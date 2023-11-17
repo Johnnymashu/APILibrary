@@ -23,7 +23,7 @@ public class Book {
     private String title;
     private String genre;
 
-    public Book(String author, String title, String genre){
+    public Book(Integer id, String author, String title, String genre){
         this.author = author;
         this.title = title;
         this.genre = genre;

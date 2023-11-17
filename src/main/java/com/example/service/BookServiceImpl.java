@@ -4,7 +4,9 @@ import com.example.model.Book;
 import com.example.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -17,12 +19,16 @@ public class BookServiceImpl implements BookService {
     }
     @Override
     public List<Book> findAll() {
-        return null;
+        List<Book> books = new ArrayList<>();
+        Iterable<Book> bookIts = bookRepository.findAll();
+        bookIts.forEach(books::add);
+        return books;
     }
 
     @Override
     public Book findById(int id) {
-        return null;
+        Optional<Book> books = bookRepository.findById(id);
+        return books.orElseGet(() -> new Book(0, "Invalid Author", "Invalid Title", "Fiction"));
     }
 
     @Override
