@@ -1,6 +1,5 @@
 package com.example.service;
 
-import com.example.model.Book;
 import com.example.model.Movie;
 import com.example.repository.MovieRepository;
 import lombok.AllArgsConstructor;
@@ -12,7 +11,7 @@ import java.util.Optional;
 
 @Slf4j
 @AllArgsConstructor
-public class MovieServiceImpl implements MoviesService{
+public class MovieServiceImpl implements MovieService {
 
     MovieRepository movieRepository;
 

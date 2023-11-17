@@ -7,3 +7,5 @@ insert into book(id, author, title, genre, publisher_id) values (102, 'JohnnyMas
 
 insert into periodicals(id, dates, title, author, genre) values (100, '11/17/2023', 'Jii', 'Shingo', 'Romance')
 insert into periodicals(id, dates, title, author, genre) values (101, '11/17/1223', 'Guma', 'Faker', 'Epic')
+
+insert into movies(actors, director) values (100, 'JJ', 'Me')
