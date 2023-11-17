@@ -29,8 +29,10 @@ public class Book {
         this.genre = genre;
 
     }
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Publisher publisher;
+
+
 
 
 
