@@ -1,9 +1,8 @@
 package com.example.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Books {
+@AllArgsConstructor
+public class Book {
 
     @Id
     @GeneratedValue
@@ -23,12 +23,13 @@ public class Books {
     private String title;
     private String genre;
 
-    public Books(String author, String title, String genre){
+    public Book(String author, String title, String genre){
         this.author = author;
         this.title = title;
         this.genre = genre;
 
     }
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Publisher publisher;
 
 
