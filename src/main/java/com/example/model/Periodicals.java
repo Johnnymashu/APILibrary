@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 @Entity
 @Slf4j
 @Getter
@@ -15,10 +19,12 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 public class Periodicals {
 
+
     @Id
     @GeneratedValue
     private Integer id;
-    private String date; //later on make this actual DATETIME
+    private String dates;
+   // private  DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
     private String title;
     private String author;
     private String genre;

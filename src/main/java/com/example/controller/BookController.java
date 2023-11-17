@@ -38,8 +38,8 @@ public class BookController {
 //            return books;
 //        }
 //
-//        @GetMapping("/books/{id}")
-//    public Book getBook(@PathVariable int id){
-//        return bookService.findById(id);
-//    }
+        @GetMapping("/books/{id}")
+    public Book getBook(@PathVariable int id){
+        return bookService.findById(id);
+    }
 }
