@@ -1,2 +1,5 @@
 insert into publisher (id, brand, prestige) values (100, 'Penguin', 2)
+insert into publisher (id, brand, prestige) values (101, 'Sho', 10)
 insert into book (id, author, title, genre, publisher_id) values (100, 'Mashu', 'KouQ', 'NonFiction', 100)
+insert into book(id, author, title, genre, publisher_id) values (101, 'Johnny', 'TFBF', 'Fiction', 100)
+insert into book(id, author, title, genre, publisher_id) values (102, 'JohnnyMashu', 'Zed', 'SciFi', 101)

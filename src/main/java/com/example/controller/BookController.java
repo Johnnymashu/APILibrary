@@ -20,21 +20,26 @@ public class BookController {
     public BookController(BookService bookService){
         this.bookService = bookService;
     }
+@GetMapping("/books")
+    public List<Book> findAll(){
+       List<Book> books = bookService.findAll();
+        return books;
+}
 
-    @GetMapping("/books")
-    public List<Book> findAll(@PathParam("filter")String filter){
-        List<Book> books = Collections.emptyList();
-        if(StringUtils.isNotBlank("filter")){
-            books = bookService.findByTitleContains(filter);
-        }
-        else {
-            books = bookService.findAll();
-        }
-            return books;
-        }
-
-        @GetMapping("/books/{id}")
-    public Book getBook(@PathVariable int id){
-        return bookService.findById(id);
-    }
+//    @GetMapping("/books")
+//    public List<Book> findAll(@PathParam("filter")String filter){
+//        List<Book> books = Collections.emptyList();
+//        if(StringUtils.isNotBlank("filter")){
+//            books = bookService.findByTitleContains(filter);
+//        }
+//        else {
+//            books = bookService.findAll();
+//        }
+//            return books;
+//        }
+//
+//        @GetMapping("/books/{id}")
+//    public Book getBook(@PathVariable int id){
+//        return bookService.findById(id);
+//    }
 }
