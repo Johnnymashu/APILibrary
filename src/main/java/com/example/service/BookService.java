@@ -13,4 +13,6 @@ public interface BookService {
     List<Book> findByTitleContains(String filter);
 
     public Book save(Book b);
+
+    public void deleteById(int id);
 }
