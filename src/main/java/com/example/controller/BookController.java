@@ -46,4 +46,9 @@ public class BookController {
         return bookService.save(book);
     }
 
+    @PutMapping("/books")
+    public Book updateBook(@RequestBody Book book){
+        return bookService.save(book);
+    }
+
 }
