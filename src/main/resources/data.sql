@@ -9,3 +9,5 @@ insert into periodicals(id, dates, title, author, genre) values (100, '11/17/202
 insert into periodicals(id, dates, title, author, genre) values (101, '11/17/1223', 'Guma', 'Faker', 'Epic')
 
 insert into movie(id, actors, author, director, genre, title) values (100, 'JJ', 'author', 'hh', 'yy', 'Me')
+
+insert into user(id, email)  values (100, 'Johnnymashu@gmail.com')
