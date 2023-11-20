@@ -57,4 +57,20 @@ public class BookTestswithMockHTTPRequest {
         assertEquals(1, book.getId());
     }
 
+    @Test
+    public void testDeletingBook() throws Exception {
+
+        int expectedLength = 2;
+
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.delete("/delete/books{id}").contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsString = result.getResponse().getContentAsString();
+
+        Book[] book = mapper.readValue(contentAsString, Book[].class);
+
+        assertEquals(expectedLength, book.length);
+    }
+
 }
