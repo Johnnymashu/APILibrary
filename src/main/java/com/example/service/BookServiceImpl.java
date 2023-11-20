@@ -37,4 +37,9 @@ public class BookServiceImpl implements BookService {
     public List<Book> findByTitleContains(String filter) {
         return bookRepository.findByTitleContains(filter);
     }
+
+    @Override
+    public Book save(Book b) {
+        return bookRepository.save(b);
+    }
 }

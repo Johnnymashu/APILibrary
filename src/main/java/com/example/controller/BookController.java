@@ -4,9 +4,7 @@ import com.example.model.Book;
 import com.example.service.BookService;
 import io.micrometer.common.util.StringUtils;
 import jakarta.websocket.server.PathParam;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -42,4 +40,10 @@ public class BookController {
     public Book getBook(@PathVariable int id){
         return bookService.findById(id);
     }
+
+    @PostMapping("/books")
+    public Book createBook(@RequestBody Book book) {
+        return bookService.save(book);
+    }
+
 }

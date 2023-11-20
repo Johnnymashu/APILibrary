@@ -11,4 +11,6 @@ public interface BookService {
     Book findById(int id);
 
     List<Book> findByTitleContains(String filter);
+
+    public Book save(Book b);
 }
