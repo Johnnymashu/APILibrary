@@ -24,10 +24,14 @@ public class Publisher {
     private String brand;
     private int prestige;
 
+    @OneToMany(mappedBy = "releaser")
+    private List<Book> releasedBooks;
+
 
     public Publisher(String brand, int prestige){
         this.brand = brand;
         this.prestige = prestige;
+        releasedBooks = new ArrayList<>();
 
     }
 }
