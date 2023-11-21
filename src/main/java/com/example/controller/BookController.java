@@ -18,11 +18,7 @@ public class BookController {
     public BookController(BookService bookService){
         this.bookService = bookService;
     }
-//@GetMapping("/books")
-//    public List<Book> findAll(){
-//       List<Book> books = bookService.findAll();
-//        return books;
-//}
+
 
     @GetMapping("/books")
     public List<Book> findAll(@PathParam("filter")String filter){
