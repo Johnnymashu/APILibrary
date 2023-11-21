@@ -1,6 +1,7 @@
 package com.example.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +30,7 @@ public class Book {
         this.genre = genre;
 
     }
+    @JsonBackReference
     @ManyToOne
     Publisher releaser;
 //            (cascade = CascadeType.PERSIST)

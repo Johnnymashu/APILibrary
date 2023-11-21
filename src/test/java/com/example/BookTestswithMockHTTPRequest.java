@@ -39,10 +39,11 @@ public class BookTestswithMockHTTPRequest {
         book.setGenre("Horror");
         book.setTitle("Spook");
 
+
         Publisher publisher = new Publisher();
         publisher.setBrand("Anime");
         publisher.setPrestige(100);
-        book.setPublisher(publisher);
+        book.setReleaser(publisher);
 
 
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post("/books").content(mapper.writeValueAsString(book)).

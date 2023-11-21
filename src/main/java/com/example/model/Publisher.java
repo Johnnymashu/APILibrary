@@ -1,5 +1,6 @@
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,6 +25,7 @@ public class Publisher {
     private String brand;
     private int prestige;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "releaser")
     private List<Book> releasedBooks;
 
