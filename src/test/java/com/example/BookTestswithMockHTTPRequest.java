@@ -63,15 +63,16 @@ public class BookTestswithMockHTTPRequest {
 
         int expectedLength = 2;
 
+
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.delete("/delete/books/{id}", 102).contentType(MediaType.APPLICATION_JSON)
+
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
 
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
 
-
-
         assertEquals("record deleted!", contentAsString);
+
     }
 
 }

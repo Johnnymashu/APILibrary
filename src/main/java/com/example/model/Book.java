@@ -30,11 +30,11 @@ public class Book {
         this.genre = genre;
 
     }
+
     @JsonBackReference
     @ManyToOne
     Publisher releaser;
-//            (cascade = CascadeType.PERSIST)
-//    private Publisher publisher;
+
 
 
 
