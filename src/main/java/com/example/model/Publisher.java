@@ -23,7 +23,7 @@ import java.util.List;
 public class Publisher {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     private String brand;
     private int prestige;
 

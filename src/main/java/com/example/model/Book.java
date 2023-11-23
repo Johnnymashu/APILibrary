@@ -19,7 +19,8 @@ public class Book {
 
     @Id
     @GeneratedValue
-    private Integer id;
+            //(strategy = GenerationType.SEQUENCE, generator = )
+    private Long id;
     private String author;
     private String title;
     private String genre;

@@ -22,7 +22,7 @@ public class Periodicals {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     private String dates;
    // private  DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
     private String title;
