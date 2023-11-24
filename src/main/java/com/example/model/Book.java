@@ -18,8 +18,13 @@ import lombok.extern.slf4j.Slf4j;
 public class Book {
 
     @Id
-    @GeneratedValue
-            //(strategy = GenerationType.SEQUENCE, generator = )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
+    @SequenceGenerator(
+            name = "book_seq",
+            sequenceName = "book_seq",
+            initialValue = 1,
+            allocationSize = 1
+    )
     private Long id;
     private String author;
     private String title;

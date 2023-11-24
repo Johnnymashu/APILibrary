@@ -1,0 +1,3 @@
+ALTER TABLE movie ADD author VARCHAR;
+ALTER TABLE movie ADD genre VARCHAR;
+ALTER TABLE movie ADD title VARCHAR;

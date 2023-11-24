@@ -1,8 +1,6 @@
 package com.example.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,7 +19,13 @@ public class Periodicals {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "periodicals_seq")
+    @SequenceGenerator(
+            name = "periodicals_seq",
+            sequenceName = "periodicals_seq",
+            initialValue = 1,
+            allocationSize = 1
+    )
     private Long id;
     private String dates;
    // private  DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);

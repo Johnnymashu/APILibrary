@@ -1,9 +1,6 @@
 package com.example.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,8 +16,18 @@ import lombok.extern.slf4j.Slf4j;
 public class User {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "t_user_seq")
+    @SequenceGenerator(
+            name = "t_user_seq",
+            sequenceName = "t_user_seq",
+            initialValue = 1,
+            allocationSize = 1
+    )
+    private Long id;
 
     private String email;
+
+    public User(Integer id, String email) {
+        this.email = email;
+    }
 }

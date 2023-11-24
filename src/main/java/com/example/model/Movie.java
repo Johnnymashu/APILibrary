@@ -1,8 +1,6 @@
 package com.example.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,11 +16,20 @@ import lombok.extern.slf4j.Slf4j;
 public class Movie extends DigitalMaterials{
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "movie_seq")
+    @SequenceGenerator(
+            name = "movie_seq",
+            sequenceName = "movie_seq",
+            initialValue = 1,
+            allocationSize = 1
+    )
+    private Long id;
     private String actors;
     private String director;
 
-
+    public Movie(Integer id, String actors, String director) {
+        this.actors = actors;
+        this.director = director;
     }
+}
 
