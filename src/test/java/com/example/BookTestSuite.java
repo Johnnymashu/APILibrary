@@ -3,14 +3,15 @@ package com.example;
 import com.example.model.Book;
 import com.example.model.Publisher;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -20,22 +21,52 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Sql("classpath:data.sql")
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @TestPropertySource(properties = {"spring.sql.init.mode=never"})
-public class BookTestswithMockHTTPRequest {
+@Transactional
+public class BookTestSuite {
 
     @Autowired
     MockMvc mockMvc;
 
     ObjectMapper mapper = new ObjectMapper();
 
+
     @Test
+    public void testFindingAll() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books").
+                contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsString = result.getResponse().getContentAsString();
+        Book[] book = mapper.readValue(contentAsString, Book[].class);
+
+
+        assertEquals(5, book.length);
+    }
+
+    @Test
+    public void testFindingById() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books").
+                contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsString = result.getResponse().getContentAsString();
+        Book[] book = mapper.readValue(contentAsString, Book[].class);
+
+
+        assertEquals("John", book[0].getAuthor());
+    }
+
+    @Test
+    @Rollback
     public void testCreatingABook() throws Exception {
         Book book = new Book();
-        book.setAuthor("Yay");
+        book.setAuthor("Egi");
         book.setGenre("Horror");
         book.setTitle("Spook");
 
@@ -55,7 +86,7 @@ public class BookTestswithMockHTTPRequest {
 
         book = mapper.readValue(contentAsString, Book.class);
 
-        assertEquals(1, book.getId());
+        assertEquals("Horror", book.getGenre());
     }
 
     @Test
