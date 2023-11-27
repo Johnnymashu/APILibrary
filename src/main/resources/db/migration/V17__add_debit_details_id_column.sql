@@ -1,0 +1,1 @@
+ALTER TABLE t_user ADD debit_details_id BIGINT;

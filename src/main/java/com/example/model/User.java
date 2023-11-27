@@ -24,14 +24,16 @@ public class User {
             allocationSize = 1
     )
     private Long id;
-
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "direct_debit_id")
+//private DebitDetails debitDetails;
     private String email;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private DebitDetails debitDetails;
 
-    public User(Integer id, String email
-               // DebitDetails debitDetails
-                ) {
+    public User(Integer id, String email, DebitDetails debitDetails) {
         this.email = email;
-        //this.debitDetails = debitDetails;
+        this.debitDetails = debitDetails;
     }
 
 //    @OneToOne(cascade = CascadeType.PERSIST)
