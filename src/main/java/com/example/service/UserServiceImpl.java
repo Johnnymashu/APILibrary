@@ -2,7 +2,7 @@ package com.example.service;
 
 import com.example.model.Book;
 
-import com.example.model.DebitDetails;
+//import com.example.model.DebitDetails;
 import com.example.model.Publisher;
 import com.example.model.User;
 import com.example.repository.UserRepository;
@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService{
 
     UserRepository userRepository;
 
-    DebitDetails debitDetails;
+   // DebitDetails debitDetails;
 
     public UserServiceImpl(UserRepository userRepository){
         this.userRepository =userRepository;
@@ -34,7 +34,9 @@ public class UserServiceImpl implements UserService{
     @Override
     public User findById(Long id) {
         Optional<User> users = userRepository.findById(id);
-        return users.orElseGet(() -> new User(0, "Johnnymashu@gmail.com", debitDetails));
+        return users.orElseGet(() -> new User(0, "Johnnymashu@gmail.com"
+             //   debitDetails
+        ));
     }
 
     @Override

@@ -36,7 +36,7 @@ public class BookController {
         else if(StringUtils.isNotBlank(genreFilter)){
             books = bookService.findByGenreContains(genreFilter);
         }
-        if(StringUtils.isNotBlank(authorFilter)){
+        else if(StringUtils.isNotBlank(authorFilter)){
             books = bookService.findByAuthorContains(authorFilter);
         }
         else {

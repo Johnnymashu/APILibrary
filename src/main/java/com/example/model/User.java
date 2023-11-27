@@ -27,11 +27,13 @@ public class User {
 
     private String email;
 
-    public User(Integer id, String email, DebitDetails debitDetails) {
+    public User(Integer id, String email
+               // DebitDetails debitDetails
+                ) {
         this.email = email;
-        this.debitDetails = debitDetails;
+        //this.debitDetails = debitDetails;
     }
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private DebitDetails debitDetails;
+//    @OneToOne(cascade = CascadeType.PERSIST)
+//    private DebitDetails debitDetails;
 }
