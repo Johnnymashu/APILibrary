@@ -49,6 +49,62 @@ public class BookTestSuite {
     }
 
     @Test
+    public void testFindById() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books/1").
+                contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsString = result.getResponse().getContentAsString();
+        Book book = mapper.readValue(contentAsString, Book.class);
+
+        assertEquals("John", book.getAuthor());
+
+    }
+
+    @Test
+    public void testDslTitle() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books?titleFilter=KouQ").
+                contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsString = result.getResponse().getContentAsString();
+        Book[] book = mapper.readValue(contentAsString, Book[].class);
+
+        assertEquals(2, book.length);
+
+    }
+
+    @Test
+    public void testDslAuthor() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books?authorFilter=Masak").
+                contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsString = result.getResponse().getContentAsString();
+        Book[] book = mapper.readValue(contentAsString, Book[].class);
+
+        assertEquals(1, book.length);
+
+    }
+
+    @Test
+    public void testDslGenre() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books?genreFilter=Spor").
+                contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsString = result.getResponse().getContentAsString();
+        Book[] book = mapper.readValue(contentAsString, Book[].class);
+
+        assertEquals(1, book.length);
+
+    }
+
+    @Test
     @Rollback
     public void testCreatingABook() throws Exception {
         Book book = new Book();
@@ -73,6 +129,34 @@ public class BookTestSuite {
         book = mapper.readValue(contentAsString, Book.class);
 
         assertEquals("Horror", book.getGenre());
+    }
+
+    @Test
+    @Rollback
+    public void testUpdatingABook() throws Exception {
+        Book book = new Book();
+        book.setId(1L);
+        book.setAuthor("John");
+        book.setGenre("Epic");
+        book.setTitle("KouQ");
+
+
+        Publisher publisher = new Publisher();
+        publisher.setBrand("MashuBooks");
+        publisher.setPrestige(10L);
+        book.setReleaser(publisher);
+
+
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.put("/books").content(mapper.writeValueAsString(book)).
+                contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsString = result.getResponse().getContentAsString();
+
+        book = mapper.readValue(contentAsString, Book.class);
+
+        assertEquals("Epic", book.getGenre());
     }
 
     @Test
