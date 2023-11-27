@@ -42,7 +42,7 @@ public class BookTestswithMockHTTPRequest {
 
         Publisher publisher = new Publisher();
         publisher.setBrand("Anime");
-        publisher.setPrestige(100);
+        publisher.setPrestige(100L);
         book.setReleaser(publisher);
 
 

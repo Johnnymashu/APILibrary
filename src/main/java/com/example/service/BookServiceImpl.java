@@ -1,9 +1,7 @@
 package com.example.service;
 
 import com.example.model.Book;
-import com.example.model.Publisher;
 import com.example.repository.BookRepository;
-import com.example.repository.PublisherRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

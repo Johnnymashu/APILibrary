@@ -1,7 +1,5 @@
 package com.example.service;
 
-
-import com.example.model.Book;
 import com.example.model.Publisher;
 import com.example.repository.PublisherRepository;
 import lombok.AllArgsConstructor;

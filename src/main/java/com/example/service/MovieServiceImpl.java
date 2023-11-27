@@ -1,7 +1,7 @@
 package com.example.service;
 
 import com.example.model.Movie;
-import com.example.model.Publisher;
+
 import com.example.repository.MovieRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

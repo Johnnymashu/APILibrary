@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.model.Movie;
+
 import com.example.model.User;
 
 import java.util.List;

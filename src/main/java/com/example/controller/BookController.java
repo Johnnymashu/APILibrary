@@ -29,7 +29,7 @@ public class BookController {
             @PathParam("authorFilter")String authorFilter
 
     ){
-        List<Book> books = Collections.emptyList();
+        List<Book> books;
         if(StringUtils.isNotBlank(titleFilter)){
             books = bookService.findByTitleContains(titleFilter);
         }
