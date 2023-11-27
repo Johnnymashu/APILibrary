@@ -79,6 +79,7 @@
 					<password></password>
 					<url>jdbc:h2:file:./data/APILibraryDb</url>
 					<locations>classpath:db/migration</locations>
+					<outOfOrder>true</outOfOrder>
 				</configuration>
 			</plugin>
 		</plugins>

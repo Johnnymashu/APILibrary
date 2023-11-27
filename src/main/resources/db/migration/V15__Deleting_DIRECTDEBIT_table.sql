@@ -5,6 +5,6 @@ CREATE TABLE IF NOT EXISTS debit_details
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     cardHolder VARCHAR(255) NOT NULL,
     sortCode BIGINT NOT NULL,
-    accountNumber BIGINT NOT NULL
+    account_number BIGINT NOT NULL
 
 );

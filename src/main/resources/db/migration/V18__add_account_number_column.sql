@@ -1,0 +1,1 @@
+ALTER TABLE debit_details ADD account_number BIGINT;

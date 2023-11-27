@@ -231,3 +231,9 @@ CYCLE [90035-214]
 	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:226)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:407)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:348)
+2023-11-27 16:30:42 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE debit_details DROP cardholder [*]VARCHAR"; SQL statement:
+ALTER TABLE debit_details DROP cardholder VARCHAR [42000-214]
+2023-11-27 16:54:30 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE debit_details DROP COLUMN cardholder [*]VARCHAR"; SQL statement:
+ALTER TABLE debit_details DROP COLUMN cardholder VARCHAR [42000-214]

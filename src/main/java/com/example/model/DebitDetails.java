@@ -23,9 +23,9 @@ public class DebitDetails {
 
     private String cardHolder;
 
-    private int sortCode;
+    private Long sortCode;
 
-    private int accountNumber;
+    private Long accountNumber;
 
 
 }
