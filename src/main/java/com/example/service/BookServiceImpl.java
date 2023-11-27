@@ -1,7 +1,9 @@
 package com.example.service;
 
 import com.example.model.Book;
+import com.example.model.Publisher;
 import com.example.repository.BookRepository;
+import com.example.repository.PublisherRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,11 +13,12 @@ import java.util.Optional;
 @Service
 public class BookServiceImpl implements BookService {
 
-
+private final PublisherRepository publisherRepository;
     private final BookRepository bookRepository;
 
-    public BookServiceImpl(BookRepository bookRepository){
+    public BookServiceImpl(BookRepository bookRepository, PublisherRepository publisherRepository){
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
     }
 
 
@@ -40,6 +43,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book save(Book b) {
+        Optional<Publisher> publisher = publisherRepository.findById(b.getReleaser().getId());
+        b.setReleaser(publisher.get());
         return bookRepository.save(b);
     }
 

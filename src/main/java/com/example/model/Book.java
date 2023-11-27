@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Slf4j
@@ -39,6 +41,7 @@ public class Book {
 
     @JsonBackReference
     @ManyToOne
+            //@Cascade(value = CascadeType.ALL)
     Publisher releaser;
 
 

@@ -4,12 +4,14 @@ import com.example.model.Book;
 import com.example.service.BookService;
 import io.micrometer.common.util.StringUtils;
 import jakarta.websocket.server.PathParam;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
 
 @RestController
+@Slf4j
 public class BookController {
 
     BookService bookService;
@@ -39,6 +41,7 @@ public class BookController {
 
     @PostMapping("/books")
     public Book createBook(@RequestBody Book book) {
+        log.debug(book.getReleaser()+ "");
         return bookService.save(book);
     }
 

@@ -10,5 +10,5 @@ public interface PublisherService {
 
     List<Publisher> findAll();
 
-    Publisher findById(int id);
+    Publisher findById(Long id);
 }

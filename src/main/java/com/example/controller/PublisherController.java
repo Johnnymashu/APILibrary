@@ -25,7 +25,7 @@ public class PublisherController {
     }
 
     @GetMapping("/publishers/{id}")
-    public Publisher findById(@PathVariable int id){
+    public Publisher findById(@PathVariable Long id){
         return publisherService.findById(id);
     }
 
