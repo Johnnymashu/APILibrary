@@ -25,7 +25,7 @@ public class PeriodicalController {
     }
 
     @GetMapping("/periodicals/{id}")
-    public Periodicals findById(@PathVariable int id){
+    public Periodicals findById(@PathVariable Long id){
         return periodicalService.findById(id);
     }
 

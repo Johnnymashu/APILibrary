@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PeriodicalRepository extends CrudRepository<Periodicals, Integer> {
+public interface PeriodicalRepository extends CrudRepository<Periodicals, Long> {
 }

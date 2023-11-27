@@ -8,5 +8,5 @@ public interface PeriodicalService {
 
     List<Periodicals> findAll();
 
-    Periodicals findById(int id);
+    Periodicals findById(Long id);
 }

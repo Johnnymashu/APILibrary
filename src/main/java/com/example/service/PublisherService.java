@@ -11,4 +11,8 @@ public interface PublisherService {
     List<Publisher> findAll();
 
     Publisher findById(Long id);
+
+    Publisher save(Publisher p);
+
+    void deleteById(Long id);
 }

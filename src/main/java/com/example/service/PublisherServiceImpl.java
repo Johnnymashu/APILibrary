@@ -1,6 +1,7 @@
 package com.example.service;
 
 
+import com.example.model.Book;
 import com.example.model.Publisher;
 import com.example.repository.PublisherRepository;
 import lombok.AllArgsConstructor;
@@ -28,5 +29,17 @@ public class PublisherServiceImpl implements PublisherService{
     public Publisher findById(Long id) {
         Optional<Publisher> publishers = publisherRepository.findById(id);
         return publishers.orElseGet(() -> new Publisher("Go Away", 000));
+    }
+
+    @Override
+    public Publisher save(Publisher p) {
+//        Optional<Publisher> publisher = publisherRepository.findById(p.getReleaser().getId());
+//        b.setReleaser(publisher.get());
+        return publisherRepository.save(p);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        publisherRepository.deleteById(id);
     }
 }

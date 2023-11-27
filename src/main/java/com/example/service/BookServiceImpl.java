@@ -31,7 +31,7 @@ private final PublisherRepository publisherRepository;
     }
 
     @Override
-    public Book findById(int id) {
+    public Book findById(Long id) {
         Optional<Book> books = bookRepository.findById(id);
         return books.orElseGet(() -> new Book(0, "Invalid Author", "Invalid Title", "Fiction"));
     }
@@ -49,7 +49,7 @@ private final PublisherRepository publisherRepository;
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         bookRepository.deleteById(id);
     }
 }

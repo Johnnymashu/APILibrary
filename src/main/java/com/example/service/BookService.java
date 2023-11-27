@@ -8,11 +8,11 @@ public interface BookService {
 
     List<Book> findAll();
 
-    Book findById(int id);
+    Book findById(Long id);
 
     List<Book> findByTitleContains(String filter);
 
     public Book save(Book b);
 
-    public void deleteById(int id);
+    public void deleteById(Long id);
 }

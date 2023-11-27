@@ -1,12 +1,11 @@
 package com.example.controller;
 
+import com.example.model.Book;
 import com.example.model.Movie;
 import com.example.service.MovieService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,7 +26,23 @@ public class MovieController {
     }
 
     @GetMapping("/movies/{id}")
-    public Movie findById(@PathVariable int id){
+    public Movie findById(@PathVariable Long id){
         return movieService.findById(id);
+    }
+
+    @PostMapping("/movies")
+    public Movie createMovie(@RequestBody Movie movie) {
+        return movieService.save(movie);
+    }
+
+    @PutMapping("/movies")
+    public Movie updateMovie(@RequestBody Book book){
+        return movieService.save(movie);
+    }
+
+    @DeleteMapping("/delete/movies/{id}")
+    public String deleteMovie(@PathVariable Long id){
+        movieService.deleteById(id);
+        return "record deleted!";
     }
 }
