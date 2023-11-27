@@ -1,6 +1,7 @@
 package com.example.service;
 
 
+import com.example.model.Movie;
 import com.example.model.Periodicals;
 import com.example.repository.PeriodicalRepository;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,17 @@ public class PeriodicalServiceImpl implements  PeriodicalService{
     public Periodicals findById(Long id) {
         Optional<Periodicals> periodicals = periodicalRepository.findById(id);
         return periodicals.orElseGet(() -> new Periodicals());
+    }
+
+    @Override
+    public Periodicals save(Periodicals p) {
+//        Optional<Publisher> publisher = publisherRepository.findById(p.getReleaser().getId());
+//        b.setReleaser(publisher.get());
+        return periodicalRepository.save(p);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        periodicalRepository.deleteById(id);
     }
 }

@@ -1,10 +1,9 @@
 package com.example.controller;
 
+import com.example.model.Movie;
 import com.example.model.Periodicals;
 import com.example.service.PeriodicalService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +26,22 @@ public class PeriodicalController {
     @GetMapping("/periodicals/{id}")
     public Periodicals findById(@PathVariable Long id){
         return periodicalService.findById(id);
+    }
+
+    @PostMapping("/periodicals")
+    public Periodicals createPeriodicals(@RequestBody Periodicals periodicals) {
+        return periodicalService.save(periodicals);
+    }
+
+    @PutMapping("/periodicals")
+    public Periodicals updatePeriodicals(@RequestBody Periodicals periodicals){
+        return periodicalService.save(periodicals);
+    }
+
+    @DeleteMapping("/delete/periodicals/{id}")
+    public String deletePeriodicals(@PathVariable Long id){
+        periodicalService.deleteById(id);
+        return "record deleted!";
     }
 
 }

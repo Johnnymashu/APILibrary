@@ -1,11 +1,10 @@
 package com.example.controller;
 
+import com.example.model.Publisher;
 import com.example.model.User;
 import com.example.service.UserService;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +26,21 @@ public class UserController {
     @GetMapping("/users/{id}")
     public User findById(@PathVariable Long id){
         return userService.findById(id);
+    }
+
+    @PostMapping("/users")
+    public User createUser(@RequestBody User users) {
+        return userService.save(users);
+    }
+
+    @PutMapping("/users")
+    public User updateUser(@RequestBody User users){
+        return userService.save(users);
+    }
+
+    @DeleteMapping("/delete/users/{id}")
+    public String deleteUser(@PathVariable Long id){
+        userService.deleteById(id);
+        return "record deleted!";
     }
 }

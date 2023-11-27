@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.model.Book;
 
+import com.example.model.Publisher;
 import com.example.model.User;
 import com.example.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,17 @@ public class UserServiceImpl implements UserService{
     public User findById(Long id) {
         Optional<User> users = userRepository.findById(id);
         return users.orElseGet(() -> new User(0, "Johnnymashu@gmail.com"));
+    }
+
+    @Override
+    public User save(User u) {
+//        Optional<Publisher> publisher = publisherRepository.findById(p.getReleaser().getId());
+//        b.setReleaser(publisher.get());
+        return userRepository.save(u);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
     }
 }
