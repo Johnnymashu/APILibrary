@@ -37,8 +37,18 @@ private final PublisherRepository publisherRepository;
     }
 
     @Override
-    public List<Book> findByTitleContains(String filter) {
-        return bookRepository.findByTitleContains(filter);
+    public List<Book> findByTitleContains(String titleFilter) {
+        return bookRepository.findByTitleContains(titleFilter);
+    }
+
+    @Override
+    public List<Book> findByGenreContains(String genreFilter) {
+        return bookRepository.findByGenreContains(genreFilter);
+    }
+
+    @Override
+    public List<Book> findByAuthorContains(String authorFilter) {
+        return bookRepository.findByAuthorContains(authorFilter);
     }
 
     @Override

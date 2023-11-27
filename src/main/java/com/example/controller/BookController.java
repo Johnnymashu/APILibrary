@@ -23,10 +23,21 @@ public class BookController {
 
 
     @GetMapping("/books")
-    public List<Book> findAll(@PathParam("filter")String filter){
+    public List<Book> findAll(
+            @PathParam("titleFilter")String titleFilter,
+            @PathParam("genreFilter")String genreFilter,
+            @PathParam("authorFilter")String authorFilter
+
+    ){
         List<Book> books = Collections.emptyList();
-        if(StringUtils.isNotBlank(filter)){
-            books = bookService.findByTitleContains(filter);
+        if(StringUtils.isNotBlank(titleFilter)){
+            books = bookService.findByTitleContains(titleFilter);
+        }
+        else if(StringUtils.isNotBlank(genreFilter)){
+            books = bookService.findByGenreContains(genreFilter);
+        }
+        if(StringUtils.isNotBlank(authorFilter)){
+            books = bookService.findByAuthorContains(authorFilter);
         }
         else {
             books = bookService.findAll();

@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface BookRepository extends CrudRepository<Book, Long> {
 
-List<Book> findByTitleContains(String filter);
+List<Book> findByTitleContains(String titleFilter);
+List<Book> findByGenreContains(String genreFilter);
+List<Book> findByAuthorContains(String authorFilter);
 }
