@@ -35,7 +35,7 @@ public class BookTestSuite {
 
 
     @Test
-    public void testFindingAll() throws Exception {
+    public void testFindAll() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -44,22 +44,8 @@ public class BookTestSuite {
         String contentAsString = result.getResponse().getContentAsString();
         Book[] book = mapper.readValue(contentAsString, Book[].class);
 
+        assertAll("Testing the get all functionality", () -> assertEquals("John", book[0].getAuthor()), () -> assertEquals("Buddhism", book[3].getTitle()), () -> assertEquals(5, book.length));
 
-        assertEquals(5, book.length);
-    }
-
-    @Test
-    public void testFindingById() throws Exception {
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books").
-                contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
-
-        MvcResult result = resultActions.andReturn();
-        String contentAsString = result.getResponse().getContentAsString();
-        Book[] book = mapper.readValue(contentAsString, Book[].class);
-
-
-        assertEquals("John", book[0].getAuthor());
     }
 
     @Test
