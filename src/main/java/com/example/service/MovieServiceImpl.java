@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.model.Movie;
+import com.example.model.Publisher;
 import com.example.repository.MovieRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,5 +31,17 @@ public class MovieServiceImpl implements MovieService {
     public Movie findById(Long id) {
         Optional<Movie> movies = movieRepository.findById(id);
         return movies.orElseGet(() -> new Movie(0, "actors", "director"));
+    }
+
+    @Override
+    public Movie save(Movie m) {
+//        Optional<Publisher> publisher = publisherRepository.findById(p.getReleaser().getId());
+//        b.setReleaser(publisher.get());
+        return movieRepository.save(m);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        movieRepository.deleteById(id);
     }
 }

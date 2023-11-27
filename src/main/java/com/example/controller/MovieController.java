@@ -36,7 +36,7 @@ public class MovieController {
     }
 
     @PutMapping("/movies")
-    public Movie updateMovie(@RequestBody Book book){
+    public Movie updateMovie(@RequestBody Movie movie){
         return movieService.save(movie);
     }
 
