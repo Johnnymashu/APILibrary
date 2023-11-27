@@ -1,8 +1,5 @@
 package com.example.service;
-
-import com.example.model.Book;
 import com.example.model.Movie;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

@@ -34,15 +34,13 @@ public class UserServiceImpl implements UserService{
     @Override
     public User findById(Long id) {
         Optional<User> users = userRepository.findById(id);
-        return users.orElseGet(() -> new User(0, "Johnnymashu@gmail.com",
+        return users.orElseGet(() -> new User("Johnnymashu@gmail.com",
                debitDetails
         ));
     }
 
     @Override
     public User save(User u) {
-//        Optional<Publisher> publisher = publisherRepository.findById(p.getReleaser().getId());
-//        b.setReleaser(publisher.get());
         return userRepository.save(u);
     }
 

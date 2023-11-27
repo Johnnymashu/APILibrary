@@ -13,12 +13,11 @@ import java.util.Optional;
 @Service
 public class BookServiceImpl implements BookService {
 
-private final PublisherRepository publisherRepository;
+
     private final BookRepository bookRepository;
 
-    public BookServiceImpl(BookRepository bookRepository, PublisherRepository publisherRepository){
+    public BookServiceImpl(BookRepository bookRepository){
         this.bookRepository = bookRepository;
-        this.publisherRepository = publisherRepository;
     }
 
 
@@ -33,7 +32,7 @@ private final PublisherRepository publisherRepository;
     @Override
     public Book findById(Long id) {
         Optional<Book> books = bookRepository.findById(id);
-        return books.orElseGet(() -> new Book(0, "Invalid Author", "Invalid Title", "Fiction"));
+        return books.orElseGet(() -> new Book("Invalid Author", "Invalid Title", "Fiction"));
     }
 
     @Override
@@ -53,8 +52,6 @@ private final PublisherRepository publisherRepository;
 
     @Override
     public Book save(Book b) {
-        Optional<Publisher> publisher = publisherRepository.findById(b.getReleaser().getId());
-        b.setReleaser(publisher.get());
         return bookRepository.save(b);
     }
 

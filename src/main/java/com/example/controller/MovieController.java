@@ -1,10 +1,8 @@
 package com.example.controller;
 
-import com.example.model.Book;
+
 import com.example.model.Movie;
 import com.example.service.MovieService;
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +19,7 @@ public class MovieController {
 
     @GetMapping("/movies")
     public List<Movie> findAll(){
-        List<Movie> movies = movieService.findAll();
-        return movies;
+        return movieService.findAll();
     }
 
     @GetMapping("/movies/{id}")

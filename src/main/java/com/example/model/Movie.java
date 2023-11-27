@@ -27,7 +27,7 @@ public class Movie extends DigitalMaterials{
     private String actors;
     private String director;
 
-    public Movie(Integer id, String actors, String director) {
+    public Movie(String actors, String director) {
         this.actors = actors;
         this.director = director;
     }

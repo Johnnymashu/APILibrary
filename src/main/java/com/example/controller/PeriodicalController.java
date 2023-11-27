@@ -1,6 +1,4 @@
 package com.example.controller;
-
-import com.example.model.Movie;
 import com.example.model.Periodicals;
 import com.example.service.PeriodicalService;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +17,7 @@ public class PeriodicalController {
 
     @GetMapping("/periodicals")
     public List<Periodicals> findAll(){
-        List<Periodicals> periodicalsList = periodicalService.findAll();
-        return periodicalsList;
+        return periodicalService.findAll();
     }
 
     @GetMapping("/periodicals/{id}")

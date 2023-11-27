@@ -6,10 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-
 @Entity
 @Slf4j
 @Getter
@@ -28,7 +24,6 @@ public class Periodicals {
     )
     private Long id;
     private String dates;
-   // private  DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
     private String title;
     private String author;
     private String genre;

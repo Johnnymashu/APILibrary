@@ -30,13 +30,11 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public Movie findById(Long id) {
         Optional<Movie> movies = movieRepository.findById(id);
-        return movies.orElseGet(() -> new Movie(0, "actors", "director"));
+        return movies.orElseGet(() -> new Movie( "actors", "director"));
     }
 
     @Override
     public Movie save(Movie m) {
-//        Optional<Publisher> publisher = publisherRepository.findById(p.getReleaser().getId());
-//        b.setReleaser(publisher.get());
         return movieRepository.save(m);
     }
 

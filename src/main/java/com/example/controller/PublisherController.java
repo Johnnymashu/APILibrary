@@ -1,11 +1,8 @@
 package com.example.controller;
-
-import com.example.model.Book;
 import com.example.model.Publisher;
 import com.example.service.PublisherService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

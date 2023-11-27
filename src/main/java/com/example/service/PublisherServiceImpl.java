@@ -33,8 +33,6 @@ public class PublisherServiceImpl implements PublisherService{
 
     @Override
     public Publisher save(Publisher p) {
-//        Optional<Publisher> publisher = publisherRepository.findById(p.getReleaser().getId());
-//        b.setReleaser(publisher.get());
         return publisherRepository.save(p);
     }
 
