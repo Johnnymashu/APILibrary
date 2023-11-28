@@ -10,7 +10,7 @@ public interface BookService {
 
     Book findById(Long id);
 
-    List<Book> findByTitleContains(String tileFilter);
+    List<Book> findByTitleContains(String titleFilter);
 
     List<Book> findByGenreContains(String genreFilter);
 

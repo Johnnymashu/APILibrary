@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.model.Book;
 import com.example.model.Movie;
 
 import com.example.repository.MovieRepository;
@@ -32,7 +33,20 @@ public class MovieServiceImpl implements MovieService {
         Optional<Movie> movies = movieRepository.findById(id);
         return movies.orElseGet(() -> new Movie( "actors", "director"));
     }
+    @Override
+    public List<Movie> findByTitleContains(String titleFilter) {
+        return movieRepository.findByTitleContains(titleFilter);
+    }
 
+    @Override
+    public List<Movie> findByGenreContains(String genreFilter) {
+        return movieRepository.findByGenreContains(genreFilter);
+    }
+
+    @Override
+    public List<Movie> findByAuthorContains(String authorFilter) {
+        return movieRepository.findByAuthorContains(authorFilter);
+    }
     @Override
     public Movie save(Movie m) {
         return movieRepository.save(m);
