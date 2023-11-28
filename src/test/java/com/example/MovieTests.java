@@ -4,6 +4,8 @@ import com.example.model.Movie;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -64,9 +66,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
     }
 
-    @Test
-     void testDslTitle() throws Exception {
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/movies?titleFilter=Mir").
+    @ParameterizedTest
+    @CsvSource({"/movies?titleFilter=Mir, 1", "/movies?authorFilter=u, 0", "/movies?genreFilter=S, 2"})
+     void testDslTitle(String url, int expectedLength) throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get(url).
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
 
@@ -74,36 +77,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         String contentAsString = result.getResponse().getContentAsString();
         Movie[] movie = mapper.readValue(contentAsString, Movie[].class);
 
-        assertEquals(1, movie.length);
-
-    }
-
-    @Test
-     void testDslAuthor() throws Exception {
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/movies?authorFilter=u").
-                contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
-
-        MvcResult result = resultActions.andReturn();
-        String contentAsString = result.getResponse().getContentAsString();
-        Movie[] movie = mapper.readValue(contentAsString, Movie[].class);
-
-        assertEquals(0, movie.length);
-
-    }
-
-    @Test
-     void testDslGenre() throws Exception {
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/movies?genreFilter=S").
-                contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
-
-        MvcResult result = resultActions.andReturn();
-        String contentAsString = result.getResponse().getContentAsString();
-        Movie[] movie = mapper.readValue(contentAsString, Movie[].class);
-
-        assertEquals(2, movie.length);
-
+        assertEquals(expectedLength, movie.length);
     }
 
     @Test

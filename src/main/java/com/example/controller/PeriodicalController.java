@@ -1,5 +1,4 @@
 package com.example.controller;
-import com.example.model.Movie;
 import com.example.model.Periodicals;
 import com.example.service.PeriodicalService;
 import io.micrometer.common.util.StringUtils;

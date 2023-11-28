@@ -1,7 +1,5 @@
 package com.example.service;
 
-
-import com.example.model.Movie;
 import com.example.model.Periodicals;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.example.repository;
 
-import com.example.model.Book;
+
 import com.example.model.Movie;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

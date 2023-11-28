@@ -5,6 +5,8 @@ import com.example.model.Publisher;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -62,9 +64,10 @@ class BookTests {
 
     }
 
-    @Test
-     void testDslTitle() throws Exception {
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books?titleFilter=KouQ").
+    @ParameterizedTest
+    @CsvSource({"/books?titleFilter=KouQ, 2", "/books?authorFilter=Masak, 1","/books?genreFilter=Spor, 1"})
+     void testDslTitle(String url, int expectedLength ) throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get(url).
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
 
@@ -72,37 +75,10 @@ class BookTests {
         String contentAsString = result.getResponse().getContentAsString();
         Book[] book = mapper.readValue(contentAsString, Book[].class);
 
-        assertEquals(2, book.length);
+        assertEquals(expectedLength, book.length);
 
     }
 
-    @Test
-     void testDslAuthor() throws Exception {
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books?authorFilter=Masak").
-                contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
-
-        MvcResult result = resultActions.andReturn();
-        String contentAsString = result.getResponse().getContentAsString();
-        Book[] book = mapper.readValue(contentAsString, Book[].class);
-
-        assertEquals(1, book.length);
-
-    }
-
-    @Test
-     void testDslGenre() throws Exception {
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books?genreFilter=Spor").
-                contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
-
-        MvcResult result = resultActions.andReturn();
-        String contentAsString = result.getResponse().getContentAsString();
-        Book[] book = mapper.readValue(contentAsString, Book[].class);
-
-        assertEquals(1, book.length);
-
-    }
 
     @Test
     @Rollback

@@ -1,6 +1,5 @@
 package com.example.service;
 
-import com.example.model.Book;
 import com.example.model.Movie;
 
 import com.example.repository.MovieRepository;

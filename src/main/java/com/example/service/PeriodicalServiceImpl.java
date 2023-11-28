@@ -1,6 +1,5 @@
 package com.example.service;
 
-import com.example.model.Book;
 import com.example.model.Periodicals;
 import com.example.repository.PeriodicalRepository;
 import org.springframework.stereotype.Service;

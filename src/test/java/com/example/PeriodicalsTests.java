@@ -4,6 +4,8 @@ import com.example.model.Periodicals;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -62,9 +64,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
     }
 
-    @Test
-     void testDslTitle() throws Exception {
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/periodicals?titleFilter=pizza").
+    @ParameterizedTest
+    @CsvSource({"/periodicals?titleFilter=pizza, 1", "/periodicals?authorFilter=e, 3", "/periodicals?genreFilter=away, 1"})
+     void testDslTitle(String url, int expectedLength) throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get(url).
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
 
@@ -72,35 +75,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         String contentAsString = result.getResponse().getContentAsString();
         Periodicals[] periodicals = mapper.readValue(contentAsString, Periodicals[].class);
 
-        assertEquals(1, periodicals.length);
-
-    }
-
-    @Test
-     void testDslAuthor() throws Exception {
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/periodicals?authorFilter=e").
-                contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
-
-        MvcResult result = resultActions.andReturn();
-        String contentAsString = result.getResponse().getContentAsString();
-        Periodicals[] periodicals = mapper.readValue(contentAsString, Periodicals[].class);
-
-        assertEquals(3, periodicals.length);
-
-    }
-
-    @Test
-     void testDslGenre() throws Exception {
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/periodicals?genreFilter=away").
-                contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
-
-        MvcResult result = resultActions.andReturn();
-        String contentAsString = result.getResponse().getContentAsString();
-        Periodicals[] periodicals = mapper.readValue(contentAsString,Periodicals[].class);
-
-        assertEquals(1, periodicals.length);
+        assertEquals(expectedLength, periodicals.length);
 
     }
 
