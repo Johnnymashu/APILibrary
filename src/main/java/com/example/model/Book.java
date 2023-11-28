@@ -2,12 +2,16 @@ package com.example.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Slf4j
@@ -34,7 +38,7 @@ public class Book {
         this.author = author;
         this.title = title;
         this.genre = genre;
-
+        borrowedBy = new ArrayList<>();
     }
 
     @JsonBackReference
@@ -42,7 +46,13 @@ public class Book {
             //@Cascade(value = CascadeType.ALL)
     Publisher releaser;
 
+    @JsonBackReference
+    @ManyToOne
+    User borrower;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "borrowed")
+    private List<User> borrowedBy;
 
 
 

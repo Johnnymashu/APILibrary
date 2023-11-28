@@ -1,0 +1,1 @@
+ALTER TABLE t_user DROP COLUMN borrowed_by_id;

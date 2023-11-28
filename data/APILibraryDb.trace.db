@@ -917,3 +917,10 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Workspace/API
 	at org.h2.mvstore.FileStore.open(FileStore.java:128)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:452)
 	... 118 more
+2023-11-28 14:22:19 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]T_USER"; expected "TRUNCATE"; SQL statement:
+T_USER [42001-214]
+2023-11-28 14:56:42 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM T_USER ,\000d\000a[*]SELECT * FROM BOOK"; expected "identifier"; SQL statement:
+SELECT * FROM T_USER ,
+SELECT * FROM BOOK [42001-214]
