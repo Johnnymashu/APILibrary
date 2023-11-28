@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.model.Book;
 import com.example.model.Periodicals;
 import com.example.repository.PeriodicalRepository;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,21 @@ public class PeriodicalServiceImpl implements  PeriodicalService{
         Iterable<Periodicals> periodicalsIterable = periodicalRepository.findAll();
         periodicalsIterable.forEach(periodicalsList::add);
         return periodicalsList;
+    }
+
+    @Override
+    public List<Periodicals> findByTitleContains(String titleFilter) {
+        return periodicalRepository.findByTitleContains(titleFilter);
+    }
+
+    @Override
+    public List<Periodicals> findByGenreContains(String genreFilter) {
+        return periodicalRepository.findByGenreContains(genreFilter);
+    }
+
+    @Override
+    public List<Periodicals> findByAuthorContains(String authorFilter) {
+        return periodicalRepository.findByAuthorContains(authorFilter);
     }
 
     @Override
