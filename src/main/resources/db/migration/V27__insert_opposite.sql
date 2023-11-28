@@ -1,0 +1,1 @@
+INSERT INTO t_user (ID, EMAIL, DEBIT_DETAILS_ID, BORROWED_ID) VALUES ( NEXTVAL('book_seq'), 'Ian@gmail.com', 4, 34);
