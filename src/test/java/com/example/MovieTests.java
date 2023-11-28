@@ -1,8 +1,6 @@
 package com.example;
 
 import com.example.model.Movie;
-import com.example.model.Movie;
-import com.example.model.Publisher;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -27,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @TestPropertySource(properties = {"spring.sql.init.mode=never"})
 @Transactional
-public class MovieTestSuite {
+ class MovieTests {
 
 
 
@@ -38,7 +36,7 @@ public class MovieTestSuite {
 
 
     @Test
-    public void testingFindAll() throws Exception{
+     void testingFindAll() throws Exception{
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/movies").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -53,7 +51,7 @@ public class MovieTestSuite {
     }
 
     @Test
-    public void testFindById() throws Exception {
+     void testFindById() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/movies/1").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -67,7 +65,7 @@ public class MovieTestSuite {
     }
 
     @Test
-    public void testDslTitle() throws Exception {
+     void testDslTitle() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/movies?titleFilter=Mir").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -81,7 +79,7 @@ public class MovieTestSuite {
     }
 
     @Test
-    public void testDslAuthor() throws Exception {
+     void testDslAuthor() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/movies?authorFilter=u").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -95,7 +93,7 @@ public class MovieTestSuite {
     }
 
     @Test
-    public void testDslGenre() throws Exception {
+     void testDslGenre() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/movies?genreFilter=S").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -110,7 +108,7 @@ public class MovieTestSuite {
 
     @Test
     @Rollback
-    public void testCreatingABook() throws Exception {
+     void testCreatingAMovie() throws Exception {
         Movie movie = new Movie();
         movie.setAuthor("Egi");
         movie.setGenre("Horror");
@@ -133,7 +131,7 @@ public class MovieTestSuite {
 
     @Test
     @Rollback
-    public void testUpdatingABook() throws Exception {
+     void testUpdatingAMovie() throws Exception {
         Movie movie = new Movie();
         movie.setId(1L);
         movie.setAuthor("Rice");
@@ -156,7 +154,7 @@ public class MovieTestSuite {
     }
 
     @Test
-    public void testDeletingBook() throws Exception {
+     void testDeletingMovie() throws Exception {
 
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.delete("/delete/movies/{id}", 2).contentType(MediaType.APPLICATION_JSON)
 

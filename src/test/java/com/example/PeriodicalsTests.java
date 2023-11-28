@@ -1,6 +1,5 @@
 package com.example;
 
-import com.example.model.Movie;
 import com.example.model.Periodicals;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
@@ -26,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @TestPropertySource(properties = {"spring.sql.init.mode=never"})
 @Transactional
-public class PeriodicalsTestSuite {
+ class PeriodicalsTests {
 
     @Autowired
     MockMvc mockMvc;
@@ -35,7 +34,7 @@ public class PeriodicalsTestSuite {
 
 
     @Test
-    public void testingFindAll() throws Exception{
+     void testingFindAll() throws Exception{
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/periodicals").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -50,7 +49,7 @@ public class PeriodicalsTestSuite {
     }
 
     @Test
-    public void testFindById() throws Exception {
+     void testFindById() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/periodicals/1").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -64,7 +63,7 @@ public class PeriodicalsTestSuite {
     }
 
     @Test
-    public void testDslTitle() throws Exception {
+     void testDslTitle() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/periodicals?titleFilter=pizza").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -78,7 +77,7 @@ public class PeriodicalsTestSuite {
     }
 
     @Test
-    public void testDslAuthor() throws Exception {
+     void testDslAuthor() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/periodicals?authorFilter=e").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -92,7 +91,7 @@ public class PeriodicalsTestSuite {
     }
 
     @Test
-    public void testDslGenre() throws Exception {
+     void testDslGenre() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/periodicals?genreFilter=away").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -107,7 +106,7 @@ public class PeriodicalsTestSuite {
 
     @Test
     @Rollback
-    public void testCreatingABook() throws Exception {
+     void testCreatingAPeriodicals() throws Exception {
         Periodicals periodicals = new Periodicals();
         periodicals.setDates("yup");
         periodicals.setAuthor("Egi");
@@ -130,7 +129,7 @@ public class PeriodicalsTestSuite {
 
     @Test
     @Rollback
-    public void testUpdatingABook() throws Exception {
+     void testUpdatingAPeriodicals() throws Exception {
         Periodicals periodicals = new Periodicals();
         periodicals.setId(1L);
         periodicals.setAuthor("me");
@@ -152,7 +151,7 @@ public class PeriodicalsTestSuite {
     }
 
     @Test
-    public void testDeletingBook() throws Exception {
+     void testDeletingPeriodicals() throws Exception {
 
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.delete("/delete/periodicals/{id}", 2).contentType(MediaType.APPLICATION_JSON)
 

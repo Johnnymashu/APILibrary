@@ -1,7 +1,7 @@
 package com.example;
 
-import com.example.model.Periodicals;
-import com.example.model.Publisher;
+import com.example.model.DebitDetails;
+import com.example.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -26,8 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @TestPropertySource(properties = {"spring.sql.init.mode=never"})
 @Transactional
-public class PublisherTestSuite {
-
+ class UserTests {
     @Autowired
     MockMvc mockMvc;
 
@@ -35,81 +34,86 @@ public class PublisherTestSuite {
 
 
     @Test
-    public void testingFindAll() throws Exception{
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/publishers").
+     void testingFindAll() throws Exception{
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/users").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
 
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
-        Publisher[] publishers = mapper.readValue(contentAsString,Publisher[].class);
+        User[] users = mapper.readValue(contentAsString, User[].class);
 
-        assertAll("Testing the get all functionality", () -> assertEquals("MashuBooks", publishers[0].getBrand()), () -> assertEquals(10, publishers[0].getPrestige()), () -> assertEquals(2, publishers.length));
+        assertAll("Testing the get all functionality", () -> assertEquals("JackWells@gmail.com", users[0].getEmail()),  () -> assertEquals(2, users.length));
 
 
     }
 
     @Test
-    public void testFindById() throws Exception {
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/publishers/33").
+     void testFindById() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/users/6").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
 
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
-        Publisher publisher = mapper.readValue(contentAsString, Publisher.class);
+        User users = mapper.readValue(contentAsString, User.class);
 
-        assertEquals("PurcellPaper", publisher.getBrand());
+        assertEquals("Johnnymashu@gmail.com", users.getEmail());
 
-    }
-
-    @Test
-    @Rollback
-    public void testCreatingABook() throws Exception {
-        Publisher publishers = new Publisher();
-        publishers.setBrand("yup");
-        publishers.setPrestige(1L);
-
-
-
-
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post("/publishers").content(mapper.writeValueAsString(publishers)).
-                contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
-
-        MvcResult result = resultActions.andReturn();
-        String contentAsString = result.getResponse().getContentAsString();
-
-        publishers = mapper.readValue(contentAsString, Publisher.class);
-
-        assertEquals(1, publishers.getPrestige());
     }
 
     @Test
     @Rollback
-    public void testUpdatingABook() throws Exception {
-        Publisher publishers = new Publisher();
-        publishers.setBrand("PurcellPaper");
-        publishers.setPrestige(1L);
-        publishers.setId(33L);
+     void testCreatingAUser() throws Exception {
+        User users = new User();
+        users.setEmail("123@gmail.com");
+
+        DebitDetails debitDetails = new DebitDetails();
+        debitDetails.setAccountNumber(123L);
+        debitDetails.setCardHolder("123");
+        debitDetails.setSortCode(3456L);
+        users.setDebitDetails(debitDetails);
 
 
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.put("/publishers").content(mapper.writeValueAsString(publishers)).
+
+
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post("/users").content(mapper.writeValueAsString(users)).
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
 
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
 
-        publishers = mapper.readValue(contentAsString, Publisher.class);
+        users = mapper.readValue(contentAsString, User.class);
 
-        assertEquals(1, publishers.getPrestige());
+        assertEquals("123", users.getDebitDetails().getCardHolder()
+        );
     }
 
     @Test
-    public void testDeletingBook() throws Exception {
+    @Rollback
+     void testUpdatingAUser() throws Exception {
+       User users = new User();
+       users.setId(6L);
+       users.setEmail("faker@gmail.com");
 
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.delete("/delete/publishers/{id}", 33).contentType(MediaType.APPLICATION_JSON)
+
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.put("/users").content(mapper.writeValueAsString(users)).
+                contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
+
+        MvcResult result = resultActions.andReturn();
+        String contentAsString = result.getResponse().getContentAsString();
+
+        users = mapper.readValue(contentAsString, User.class);
+
+        assertEquals("faker@gmail.com", users.getEmail());
+    }
+
+    @Test
+     void testDeletingUser() throws Exception {
+
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.delete("/delete/users/{id}", 33).contentType(MediaType.APPLICATION_JSON)
 
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
 

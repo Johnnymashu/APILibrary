@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @TestPropertySource(properties = {"spring.sql.init.mode=never"})
 @Transactional
-public class BookTestSuite {
+class BookTests {
 
     @Autowired
     MockMvc mockMvc;
@@ -35,7 +35,7 @@ public class BookTestSuite {
 
 
     @Test
-    public void testFindAll() throws Exception {
+     void testFindAll() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -49,7 +49,7 @@ public class BookTestSuite {
     }
 
     @Test
-    public void testFindById() throws Exception {
+     void testFindById() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books/1").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -63,7 +63,7 @@ public class BookTestSuite {
     }
 
     @Test
-    public void testDslTitle() throws Exception {
+     void testDslTitle() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books?titleFilter=KouQ").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -77,7 +77,7 @@ public class BookTestSuite {
     }
 
     @Test
-    public void testDslAuthor() throws Exception {
+     void testDslAuthor() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books?authorFilter=Masak").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -91,7 +91,7 @@ public class BookTestSuite {
     }
 
     @Test
-    public void testDslGenre() throws Exception {
+     void testDslGenre() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get("/books?genreFilter=Spor").
                 contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -106,7 +106,7 @@ public class BookTestSuite {
 
     @Test
     @Rollback
-    public void testCreatingABook() throws Exception {
+     void testCreatingABook() throws Exception {
         Book book = new Book();
         book.setAuthor("Egi");
         book.setGenre("Horror");
@@ -133,7 +133,7 @@ public class BookTestSuite {
 
     @Test
     @Rollback
-    public void testUpdatingABook() throws Exception {
+     void testUpdatingABook() throws Exception {
         Book book = new Book();
         book.setId(1L);
         book.setAuthor("John");
@@ -160,7 +160,7 @@ public class BookTestSuite {
     }
 
     @Test
-    public void testDeletingBook() throws Exception {
+     void testDeletingBook() throws Exception {
 
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.delete("/delete/books/{id}", 102).contentType(MediaType.APPLICATION_JSON)
 
