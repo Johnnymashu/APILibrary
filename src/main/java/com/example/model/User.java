@@ -35,11 +35,13 @@ public class User {
     private DebitDetails debitDetails;
 
     @JsonBackReference
-    @ManyToOne
-    Book borrowed;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "borrowed_by_id")
+    Book book;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "borrower")
+    @OneToMany
+    @JoinColumn(name = "user_id")
     private List<Book> borrowedBooks;
 
     public User(String email, DebitDetails debitDetails) {

@@ -1,0 +1,1 @@
+INSERT INTO Book (ID, AUTHOR, TITLE, GENRE, RELEASER_ID, BORROWER_ID, USER_ID) VALUES ( NEXTVAL('book_seq'), 'tok', 'Os','Hida', 1, 6, 1);
