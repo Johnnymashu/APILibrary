@@ -47,11 +47,13 @@ public class Book {
     Publisher releaser;
 
     @JsonBackReference
-    @ManyToOne
-    User borrower;
+    @JoinColumn(name = "user_id")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    User user;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "borrowed")
+    @OneToMany
+    @JoinColumn(name = "borrowed_by_id")
     private List<User> borrowedBy;
 
 

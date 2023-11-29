@@ -1,0 +1,1 @@
+ALTER TABLE t_user ADD borrowed_by_id BIGINT;
