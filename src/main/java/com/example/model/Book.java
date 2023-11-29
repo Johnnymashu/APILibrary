@@ -22,7 +22,6 @@ import java.util.List;
 public class Book {
 
     @Id
-
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
     @SequenceGenerator(
             name = "book_seq",
@@ -40,7 +39,7 @@ public class Book {
         this.author = author;
         this.title = title;
         this.genre = genre;
-        borrowedBy = new ArrayList<>();
+     //   borrowedBy = new ArrayList<>();
     }
 
     @JsonBackReference
@@ -49,14 +48,16 @@ public class Book {
     Publisher releaser;
 
     @JsonBackReference
-    @JoinColumn(name = "user_id")
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
+    @JoinTable(name = "USER_BOOKS",
+    joinColumns = {@JoinColumn(name = "book_id", insertable = false, updatable = false)},
+    inverseJoinColumns = {@JoinColumn(name = "user_id", insertable = false, updatable = false)})
     User user;
 
-    @JsonManagedReference
-    @OneToMany
-    @JoinColumn(name = "borrowed_by_id")
-    private List<User> borrowedBy;
+//    @JsonManagedReference
+//    @OneToMany
+//    @JoinColumn(name = "borrowed_by_id")
+//    private List<User> borrowedBy;
 
 
 

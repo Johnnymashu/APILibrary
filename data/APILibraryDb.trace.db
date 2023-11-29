@@ -1301,3 +1301,6 @@ id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL
     book_id BIGINT NOT NULL
 ) [42001-214]
+2023-11-29 15:42:10 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BOOKS" not found; SQL statement:
+SELECT * FROM BOOKS [42102-214]
