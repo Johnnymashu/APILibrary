@@ -1,0 +1,1 @@
+ALTER TABLE book ADD book_id BIGINT;

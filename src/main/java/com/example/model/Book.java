@@ -22,6 +22,7 @@ import java.util.List;
 public class Book {
 
     @Id
+
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
     @SequenceGenerator(
             name = "book_seq",
@@ -29,6 +30,7 @@ public class Book {
             initialValue = 1,
             allocationSize = 1
     )
+    @Column(name = "book_id")
     private Long id;
     private String author;
     private String title;

@@ -21,6 +21,7 @@ import java.util.List;
 public class User {
 
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "t_user_seq")
     @SequenceGenerator(
             name = "t_user_seq",
@@ -34,14 +35,17 @@ public class User {
     @OneToOne(cascade = CascadeType.PERSIST)
     private DebitDetails debitDetails;
 
-    @JsonBackReference
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "borrowed_by_id")
-    Book book;
+//    @JsonBackReference
+//    @ManyToOne(cascade = CascadeType.MERGE)
+//    @JoinColumn(name = "borrowed_by_id")
+//    Book book;
 
-    @JsonManagedReference
+
     @OneToMany
-    @JoinColumn(name = "user_id")
+    @JoinTable
+            (name = "USER_BOOKS",
+    joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+    inverseJoinColumns= { @JoinColumn(name="book_id", referencedColumnName = "book_id")})
     private List<Book> borrowedBooks;
 
     public User(String email, DebitDetails debitDetails) {
