@@ -44,7 +44,7 @@ public class Book {
 
     }
 
-    @JsonBackReference
+   // @JsonBackReference
     @ManyToOne
             //@Cascade(value = CascadeType.ALL)
     Publisher releaser;
