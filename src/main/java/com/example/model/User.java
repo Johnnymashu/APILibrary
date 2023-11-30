@@ -40,7 +40,7 @@ public class User {
 //    @JoinColumn(name = "borrowed_by_id")
 //    Book book;
 
-@JsonManagedReference
+@JsonManagedReference(value = "user_books")
     @OneToMany
     @JoinTable
             (name = "USER_BOOKS",

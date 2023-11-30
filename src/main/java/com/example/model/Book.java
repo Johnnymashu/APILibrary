@@ -47,7 +47,7 @@ public class Book {
             //@Cascade(value = CascadeType.ALL)
     Publisher releaser;
 
-    @JsonBackReference
+    @JsonBackReference(value = "user_books")
     @ManyToOne
     @JoinTable(name = "USER_BOOKS",
     joinColumns = {@JoinColumn(name = "book_id", insertable = false, updatable = false)},

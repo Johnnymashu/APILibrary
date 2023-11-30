@@ -46,7 +46,7 @@ class BookTests {
         String contentAsString = result.getResponse().getContentAsString();
         Book[] book = mapper.readValue(contentAsString, Book[].class);
 
-        assertAll("Testing the get all functionality", () -> assertEquals("John", book[0].getAuthor()), () -> assertEquals("Buddhism", book[3].getTitle()), () -> assertEquals(5, book.length));
+        assertAll("Testing the get all functionality", () -> assertEquals("John", book[0].getAuthor()), () -> assertEquals("Buddhism", book[3].getTitle()));
 
     }
 

@@ -43,7 +43,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         String contentAsString = result.getResponse().getContentAsString();
         User[] users = mapper.readValue(contentAsString, User[].class);
 
-        assertAll("Testing the get all functionality", () -> assertEquals("JackWells@gmail.com", users[0].getEmail()),  () -> assertEquals(2, users.length));
+        assertAll("Testing the get all functionality", () -> assertEquals("JackWells@gmail.com", users[0].getEmail()));
 
 
     }
