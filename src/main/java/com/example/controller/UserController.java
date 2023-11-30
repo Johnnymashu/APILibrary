@@ -20,6 +20,7 @@ public class UserController {
         return UserDtoConverter.convertAll(userService.findAll());
     }
 
+
     @GetMapping("/users/{id}")
     public UserDto findById(@PathVariable Long id){
         return UserDtoConverter.convert(userService.findById(id));
