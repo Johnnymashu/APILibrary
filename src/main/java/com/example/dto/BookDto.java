@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +20,16 @@ public class BookDto {
 
 
 
+    private List<UserDto> users;
+
+
+    public BookDto(Long id, String author, String title, String genre, List<UserDto> users) {
+        this.id = id;
+        this.author = author;
+        this.title = title;
+        this.genre = genre;
+        this.users = users;
+    }
 
     private UserDto user;
 

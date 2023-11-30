@@ -11,7 +11,7 @@ import java.util.List;
 public class BookDtoConverter {
 
     public static BookDto convert (Book book){
-        return new BookDto(book.getId(), book.getAuthor(), book.getTitle(), book.getGenre(), UserDtoConverter.convertWithoutBooks(book.getUser()));
+        return new BookDto(book.getId(), book.getAuthor(), book.getTitle(), book.getGenre(), UserDtoConverter.convertAll(book.getUsers()));
 
 
 

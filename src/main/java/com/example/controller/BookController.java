@@ -24,29 +24,29 @@ public class BookController {
     }
 
 
-//    @GetMapping("/books")
-//    public List<Book> findAll(
-//            @PathParam("titleFilter")String titleFilter,
-//            @PathParam("genreFilter")String genreFilter,
-//            @PathParam("authorFilter")String authorFilter
-//
-//    ){
-//        List<Book> books;
-//        if(StringUtils.isNotBlank(titleFilter)){
-//            books = bookService.findByTitleContains(titleFilter);
-//        }
-//        else if(StringUtils.isNotBlank(genreFilter)){
-//            books = bookService.findByGenreContains(genreFilter);
-//        }
-//        else if(StringUtils.isNotBlank(authorFilter)){
-//            books = bookService.findByAuthorContains(authorFilter);
-//        }
-//        else {
-//            books = BookDtoConverter.convertAll(bookService.findAll());
-//        }
-//            return books;
-//        }
-@GetMapping("/books")
+    @GetMapping("/books")
+    public List<Book> findAll(
+            @PathParam("titleFilter")String titleFilter,
+            @PathParam("genreFilter")String genreFilter,
+            @PathParam("authorFilter")String authorFilter
+
+    ){
+        List<Book> books;
+        if(StringUtils.isNotBlank(titleFilter)){
+            books = bookService.findByTitleContains(titleFilter);
+        }
+        else if(StringUtils.isNotBlank(genreFilter)){
+            books = bookService.findByGenreContains(genreFilter);
+        }
+        else if(StringUtils.isNotBlank(authorFilter)){
+            books = bookService.findByAuthorContains(authorFilter);
+        }
+        else {
+            books = bookService.findAll();
+        }
+            return books;
+        }
+@GetMapping("/borrowed/books")
   public List<Book> findAll(){
         return bookService.findAll();
 }
@@ -54,12 +54,11 @@ public class BookController {
         @GetMapping("/books/{id}")
     public BookDto getBook(@PathVariable Long id){
         return BookDtoConverter.convert(bookService.findById(id));
-          //  return bookService.findById(id);
+
     }
 
     @PostMapping("/books")
     public Book createBook(@RequestBody Book book) {
-        log.debug(book.getReleaser()+ "");
         return bookService.save(book);
     }
 

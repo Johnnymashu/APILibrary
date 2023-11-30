@@ -30,15 +30,15 @@ public class Publisher {
     private String brand;
     private Long prestige;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "releaser")
-    private List<Book> releasedBooks;
+//    @JsonManagedReference
+//    @OneToMany(mappedBy = "releaser")
+//    private List<Book> releasedBooks;
 
 
     public Publisher(String brand, long prestige){
         this.brand = brand;
         this.prestige = prestige;
-        releasedBooks = new ArrayList<>();
+        //releasedBooks = new ArrayList<>();
 
     }
 }

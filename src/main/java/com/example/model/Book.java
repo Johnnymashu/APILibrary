@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
@@ -37,24 +40,24 @@ public class Book {
     private String title;
     private String genre;
 
+    @OneToMany
+    @JoinTable(name = "USER_BOOKS",
+            joinColumns = {@JoinColumn(name = "book_id", insertable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "user_id", insertable = false, updatable = false)})
+    private List<User> users;
     public Book(String author, String title, String genre){
         this.author = author;
         this.title = title;
         this.genre = genre;
-
+        users = new ArrayList<>();
     }
 
    // @JsonBackReference
-    @ManyToOne
-            //@Cascade(value = CascadeType.ALL)
-    Publisher releaser;
+//    @ManyToOne
+//            //@Cascade(value = CascadeType.ALL)
+//    Publisher releaser;
 
     //@JsonBackReference(value = "user_books")
-    @ManyToOne
-    @JoinTable(name = "USER_BOOKS",
-    joinColumns = {@JoinColumn(name = "book_id", insertable = false, updatable = false)},
-    inverseJoinColumns = {@JoinColumn(name = "user_id", insertable = false, updatable = false)})
-    User user;
 
 
 

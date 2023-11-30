@@ -17,7 +17,7 @@ public class UserDtoConverter {
         List<UserDto> userDtoList = new ArrayList<>();
 
         for (User user : userList){
-            userDtoList.add(convert(user));
+            userDtoList.add(convertWithoutBooks(user));
         }
         return userDtoList;
     }
