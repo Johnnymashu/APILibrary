@@ -6,7 +6,7 @@ import com.example.model.Book;
 public class BookDtoConverter {
 
     public static BookDto convert (Book book){
-        return new BookDto(book.getId(), book.getAuthor(), book.getTitle(), book.getGenre(), book.getReleaser(), UserDtoConverter.convertWithoutBooks(book.getBorrower()));
+        return new BookDto(book.getId(), book.getAuthor(), book.getTitle(), book.getGenre(), book.getReleaser(), UserDtoConverter.convertWithoutBooks(book.getUser()));
 
 
     }

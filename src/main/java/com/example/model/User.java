@@ -12,8 +12,8 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
 @Entity
 @Table(name="t_user")
 @Getter
@@ -39,7 +39,7 @@ public class User {
 
 
 
-//@JsonManagedReference(value = "user_books")
+@JsonManagedReference(value = "user_books")
     @OneToMany
     @JoinTable
             (name = "USER_BOOKS",
