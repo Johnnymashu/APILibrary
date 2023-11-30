@@ -46,10 +46,6 @@ public class BookController {
         }
             return books;
         }
-@GetMapping("/borrowed/books")
-  public List<BookDto> findAll(){
-        return BookDtoConverter.convertAll(bookService.findAll());
-}
 
         @GetMapping("/books/{id}")
     public BookDto getBook(@PathVariable Long id){
