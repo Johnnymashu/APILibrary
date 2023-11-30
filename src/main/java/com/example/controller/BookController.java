@@ -47,8 +47,8 @@ public class BookController {
 //            return books;
 //        }
 @GetMapping("/books")
-  public List<BookDto> findAll(){
-        return BookDtoConverter.convertAll(bookService.findAll());
+  public List<Book> findAll(){
+        return bookService.findAll();
 }
 
         @GetMapping("/books/{id}")

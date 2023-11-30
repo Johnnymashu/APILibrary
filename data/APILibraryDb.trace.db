@@ -6541,3 +6541,6 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Workspace/API
 	at org.h2.mvstore.FileStore.open(FileStore.java:128)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:452)
 	... 118 more
+2023-11-30 19:19:38 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT *[*]DISTINCT FROM USER_BOOKS"; SQL statement:
+SELECT *DISTINCT FROM USER_BOOKS [42000-214]
