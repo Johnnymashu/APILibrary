@@ -1,6 +1,4 @@
 package com.example.model;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,10 +33,7 @@ public class User {
     @OneToOne(cascade = CascadeType.PERSIST)
     private DebitDetails debitDetails;
 
-//    @JsonBackReference
-//    @ManyToOne(cascade = CascadeType.MERGE)
-//    @JoinColumn(name = "borrowed_by_id")
-//    Book book;
+
 
 @JsonManagedReference(value = "user_books")
     @OneToMany
