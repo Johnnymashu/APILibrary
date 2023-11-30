@@ -24,28 +24,32 @@ public class BookController {
     }
 
 
-    @GetMapping("/books")
-    public List<BookDto> findAll(
-            @PathParam("titleFilter")String titleFilter,
-            @PathParam("genreFilter")String genreFilter,
-            @PathParam("authorFilter")String authorFilter
-
-    ){
-        List<BookDto> books;
-        if(StringUtils.isNotBlank(titleFilter)){
-            books = BookDtoConverter.convertAll(bookService.findByTitleContains(titleFilter));
-        }
-        else if(StringUtils.isNotBlank(genreFilter)){
-            books = BookDtoConverter.convertAll(bookService.findByGenreContains(genreFilter));
-        }
-        else if(StringUtils.isNotBlank(authorFilter)){
-            books = BookDtoConverter.convertAll(bookService.findByAuthorContains(authorFilter));
-        }
-        else {
-            books = BookDtoConverter.convertAll(bookService.findAll());
-        }
-            return books;
-        }
+//    @GetMapping("/books")
+//    public List<Book> findAll(
+//            @PathParam("titleFilter")String titleFilter,
+//            @PathParam("genreFilter")String genreFilter,
+//            @PathParam("authorFilter")String authorFilter
+//
+//    ){
+//        List<Book> books;
+//        if(StringUtils.isNotBlank(titleFilter)){
+//            books = bookService.findByTitleContains(titleFilter);
+//        }
+//        else if(StringUtils.isNotBlank(genreFilter)){
+//            books = bookService.findByGenreContains(genreFilter);
+//        }
+//        else if(StringUtils.isNotBlank(authorFilter)){
+//            books = bookService.findByAuthorContains(authorFilter);
+//        }
+//        else {
+//            books = BookDtoConverter.convertAll(bookService.findAll());
+//        }
+//            return books;
+//        }
+@GetMapping("/books")
+  public List<BookDto> findAll(){
+        return BookDtoConverter.convertAll(bookService.findAll());
+}
 
         @GetMapping("/books/{id}")
     public BookDto getBook(@PathVariable Long id){

@@ -16,14 +16,13 @@ public class UserController {
         this.userService = userService;
     }
     @GetMapping("/users")
-    public List<User> findAll(){
-        return userService.findAll();
+    public List<UserDto> findAll(){
+        return UserDtoConverter.convertAll(userService.findAll());
     }
 
     @GetMapping("/users/{id}")
     public UserDto findById(@PathVariable Long id){
-        return UserDtoConverter.convertWithoutBooks(userService.findById(id));
-        //return userService.findById(id);
+        return UserDtoConverter.convert(userService.findById(id));
     }
 
     @PostMapping("/users")

@@ -18,8 +18,8 @@ public class UserDto {
 
     private DebitDetails debitDetails;
 
-    @JsonIgnore
-    private List<Book> books;
+
+    private List<BookDto> books;
 
     public UserDto(){
 

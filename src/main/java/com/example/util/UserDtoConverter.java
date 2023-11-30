@@ -10,7 +10,7 @@ import java.util.List;
 public class UserDtoConverter {
 
     public static UserDto convert(User user){
-        return new UserDto(user.getId(), user.getEmail(), user.getDebitDetails(), user.getBorrowedBooks());
+        return new UserDto(user.getId(), user.getEmail(), user.getDebitDetails(), BookDtoConverter.convertAll(user.getBorrowedBooks()));
     }
 
     public static List<UserDto> convertAll (List<User> userList) {
