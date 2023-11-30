@@ -1,5 +1,8 @@
 package com.example.model;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +12,8 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Table(name="t_user")
 @Getter
@@ -35,7 +39,7 @@ public class User {
 
 
 
-@JsonManagedReference(value = "user_books")
+//@JsonManagedReference(value = "user_books")
     @OneToMany
     @JoinTable
             (name = "USER_BOOKS",

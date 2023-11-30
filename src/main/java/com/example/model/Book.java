@@ -3,6 +3,8 @@ package com.example.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +13,8 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Slf4j
 @Getter
@@ -46,7 +49,7 @@ public class Book {
             //@Cascade(value = CascadeType.ALL)
     Publisher releaser;
 
-    @JsonBackReference(value = "user_books")
+    //@JsonBackReference(value = "user_books")
     @ManyToOne
     @JoinTable(name = "USER_BOOKS",
     joinColumns = {@JoinColumn(name = "book_id", insertable = false, updatable = false)},
