@@ -52,12 +52,12 @@ public class Book {
         users = new ArrayList<>();
     }
 
-   // @JsonBackReference
+//    @JsonBackReference
 //    @ManyToOne
 //            //@Cascade(value = CascadeType.ALL)
 //    Publisher releaser;
 
-    //@JsonBackReference(value = "user_books")
+   // @JsonBackReference(value = "user_books")
 
 
 

@@ -38,7 +38,7 @@ public class Publisher {
     public Publisher(String brand, long prestige){
         this.brand = brand;
         this.prestige = prestige;
-        //releasedBooks = new ArrayList<>();
+//        releasedBooks = new ArrayList<>();
 
     }
 }

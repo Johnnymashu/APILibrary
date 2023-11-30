@@ -26,7 +26,7 @@ public class PublisherServiceImpl implements PublisherService{
     @Override
     public Publisher findById(Long id) {
         Optional<Publisher> publishers = publisherRepository.findById(id);
-        return publishers.orElseGet(() -> new Publisher("Go Away", 000));
+        return publishers.orElseGet(() -> new Publisher());
     }
 
     @Override
