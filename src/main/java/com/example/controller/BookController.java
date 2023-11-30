@@ -1,7 +1,9 @@
 package com.example.controller;
 
+import com.example.dto.BookDto;
 import com.example.model.Book;
 import com.example.service.BookService;
+import com.example.util.BookDtoConverter;
 import io.micrometer.common.util.StringUtils;
 import jakarta.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
@@ -46,8 +48,8 @@ public class BookController {
         }
 
         @GetMapping("/books/{id}")
-    public Book getBook(@PathVariable Long id){
-        return bookService.findById(id);
+    public BookDto getBook(@PathVariable Long id){
+        return BookDtoConverter.convertWithoutUser(bookService.findById(id));
     }
 
     @PostMapping("/books")
