@@ -47,8 +47,8 @@ public class BookController {
             return books;
         }
 @GetMapping("/borrowed/books")
-  public List<Book> findAll(){
-        return bookService.findAll();
+  public List<BookDto> findAll(){
+        return BookDtoConverter.convertAll(bookService.findAll());
 }
 
         @GetMapping("/books/{id}")
