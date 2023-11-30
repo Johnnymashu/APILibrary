@@ -1,6 +1,8 @@
 package com.example.controller;
+import com.example.dto.UserDto;
 import com.example.model.User;
 import com.example.service.UserService;
+import com.example.util.UserDtoConverter;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -19,8 +21,9 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User findById(@PathVariable Long id){
-        return userService.findById(id);
+    public UserDto findById(@PathVariable Long id){
+        return UserDtoConverter.convertWithoutBooks(userService.findById(id));
+        //return userService.findById(id);
     }
 
     @PostMapping("/users")

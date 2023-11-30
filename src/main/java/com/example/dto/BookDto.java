@@ -15,17 +15,18 @@ public class BookDto {
     private String title;
     private String genre;
 
-    Publisher releaser;
+
 
 
 
     private UserDto user;
 
-    public BookDto(Long id, String author, String title, String genre, Publisher releaser){
+
+
+    public BookDto(Long id, String author, String title, String genre){
         this.id = id;
         this.author=author;
         this.title=title;
         this.genre=genre;
-        this.releaser = releaser;
     }
 }

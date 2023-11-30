@@ -50,6 +50,7 @@ public class BookController {
         @GetMapping("/books/{id}")
     public BookDto getBook(@PathVariable Long id){
         return BookDtoConverter.convertWithoutUser(bookService.findById(id));
+          //  return bookService.findById(id);
     }
 
     @PostMapping("/books")
