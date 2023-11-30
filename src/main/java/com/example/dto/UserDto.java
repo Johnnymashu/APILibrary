@@ -30,6 +30,7 @@ public class UserDto {
         this.id = id;
         this.email = email;
         this.debitDetails = debitDetails;
+
     }
 
 }

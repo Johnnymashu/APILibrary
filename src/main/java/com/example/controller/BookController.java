@@ -25,24 +25,24 @@ public class BookController {
 
 
     @GetMapping("/books")
-    public List<Book> findAll(
+    public List<BookDto> findAll(
             @PathParam("titleFilter")String titleFilter,
             @PathParam("genreFilter")String genreFilter,
             @PathParam("authorFilter")String authorFilter
 
     ){
-        List<Book> books;
+        List<BookDto> books;
         if(StringUtils.isNotBlank(titleFilter)){
-            books = bookService.findByTitleContains(titleFilter);
+            books = BookDtoConverter.convertAll(bookService.findByTitleContains(titleFilter));
         }
         else if(StringUtils.isNotBlank(genreFilter)){
-            books = bookService.findByGenreContains(genreFilter);
+            books = BookDtoConverter.convertAll(bookService.findByGenreContains(genreFilter));
         }
         else if(StringUtils.isNotBlank(authorFilter)){
-            books = bookService.findByAuthorContains(authorFilter);
+            books = BookDtoConverter.convertAll(bookService.findByAuthorContains(authorFilter));
         }
         else {
-            books = bookService.findAll();
+            books = BookDtoConverter.convertAll(bookService.findAll());
         }
             return books;
         }
